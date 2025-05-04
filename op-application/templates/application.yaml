@@ -13,9 +13,7 @@ spec:
       valueFiles:
         - values.yaml
       valuesObject:
-        appConf:
-          key1: value1
-          key2: value2
+        {{ toYaml .Values.appConf | indent 8 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: default

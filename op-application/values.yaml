@@ -2,3 +2,9 @@ helm:
   repoURL: "http://10.155.255.182/repos"
   targetRevision: 0.1.3
   chartName: op-gateway
+
+appConf:
+  app.security:
+    white-list:
+      - /iam-service/swagger-ui/**
+      - /iam-service/openapi/**
