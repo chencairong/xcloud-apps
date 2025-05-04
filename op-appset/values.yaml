@@ -1,0 +1,11 @@
+helm:
+  repoURL: "https://github.com/chencairong/xcloud-apps.git"
+  targetRevision: HEAD
+
+applications:
+  - chart:
+      name: op-gateway
+      version: 0.1.0
+      namespace: app1-ns
+      values:
+        replicaCount: 2
