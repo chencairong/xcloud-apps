@@ -8,6 +8,7 @@ spec:
   source:
     repoURL: {{ .Values.helm.repoURL }}
     targetRevision: {{ .Values.helm.targetRevision }}
+    chart: {{ .Chart.Name }}
     helm:
       valueFiles:
         - values.yaml
