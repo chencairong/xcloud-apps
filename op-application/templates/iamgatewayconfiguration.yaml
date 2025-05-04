@@ -1,0 +1,7 @@
+apiVersion: devops.extremecloud.com/v1
+kind: IamGatewayConfiguration
+metadata:
+  name: {{ .Release.Name }}-igc
+spec:
+  appConf:
+{{ toYaml .Values.appConf | indent 4 }}
