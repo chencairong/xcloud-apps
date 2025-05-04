@@ -2,8 +2,8 @@ apiVersion: v1
 entries:
   op-appset:
   - apiVersion: v2
-    created: "2025-05-04T19:24:14.461068+08:00"
-    digest: f203565be0b3d5d4d29572ef0081ba3da6d333895553ea530a40eec9145e7495
+    created: "2025-05-04T19:27:02.378393+08:00"
+    digest: 8258dd3b62801a02ca76401d51287d2b2d45ab9a1a5105cb116c38b24dcd8512
     name: op-appset
     urls:
     - op-appset-0.1.0.tgz
@@ -11,10 +11,10 @@ entries:
   op-gateway:
   - apiVersion: v2
     appVersion: 24.5.1
-    created: "2025-05-04T19:24:14.461477+08:00"
+    created: "2025-05-04T19:27:02.378728+08:00"
     digest: 60b80a158788f7c1378ca8f9c70aa8d4d381c936e12eba716db1377053355025
     name: op-gateway
     urls:
     - op-gateway-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-04T19:24:14.459813+08:00"
+generated: "2025-05-04T19:27:02.377336+08:00"

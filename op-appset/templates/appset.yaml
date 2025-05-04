@@ -10,15 +10,12 @@ spec:
           {{- toYaml .Values.applications | nindent 10 }}
   template:
     metadata:
-      name: "{{ .Release.Name }}-{{ .chart.name }}"
+      name: "{{ .Release.Name }}"
     spec:
       project: default
       source:
         repoURL: {{ .Values.helm.repoURL }}
         targetRevision: "{{ .Values.helm.targetRevision }}"
-        helm:
-          values: |
-            {{- toYaml .chart.values | nindent 12 }}
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
