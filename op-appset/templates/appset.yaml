@@ -1,29 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: op-appset
+  name: {{ .Release.Name }}
+  namespace: default
 spec:
-  goTemplate: true
   generators:
     - list:
-        elements: {{ toYaml .Values.applications | nindent 10 }}
+        elements:
+          {{- toYaml .Values.applications | nindent 10 }}
   template:
     metadata:
-      name: '{{name}}'
+      name: "{{ .Release.Name }}-{{ .chart.name }}"
     spec:
       project: default
       source:
-        repoURL: '{{ $.Values.git.repoURL }}'
-        targetRevision: '{{ $.Values.git.targetRevision }}'
-        path: '{{ $.Values.git.chartPath }}'
+        repoURL: {{ .Values.helm.repoURL }}
+        targetRevision: "{{ .Values.helm.targetRevision }}"
         helm:
-          valuesObject: '{{values}}'
+          values: |
+            {{- toYaml .chart.values | nindent 12 }}
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{name}}'
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
+        namespace: argocd

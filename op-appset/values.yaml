@@ -1,16 +1,11 @@
-applications:
-  - name: app-a
-    values:
-      replicaCount: 2
-      image:
-        tag: "1.19"
-  - name: app-b
-    values:
-      replicaCount: 3
-      image:
-        tag: "1.20"
-
-git:
-  repoURL: https://github.com/your-org/your-repo.git
+helm:
+  repoURL: "https://github.com/chencairong/xcloud-apps.git"
   targetRevision: HEAD
-  chartPath: charts/myapp
+
+applications:
+  - chart:
+      name: op-gateway
+      version: 0.1.0
+      namespace: app1-ns
+      values:
+        replicaCount: 2
