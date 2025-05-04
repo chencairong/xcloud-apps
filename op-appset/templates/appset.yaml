@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: op-appset
+spec:
+  goTemplate: true
+  generators:
+    - list:
+        elements: {{ toYaml .Values.applications | nindent 10 }}
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{ $.Values.git.repoURL }}'
+        targetRevision: '{{ $.Values.git.targetRevision }}'
+        path: '{{ $.Values.git.chartPath }}'
+        helm:
+          valuesObject: '{{values}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{name}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

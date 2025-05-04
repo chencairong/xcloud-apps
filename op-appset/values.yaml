@@ -1,0 +1,16 @@
+applications:
+  - name: app-a
+    values:
+      replicaCount: 2
+      image:
+        tag: "1.19"
+  - name: app-b
+    values:
+      replicaCount: 3
+      image:
+        tag: "1.20"
+
+git:
+  repoURL: https://github.com/your-org/your-repo.git
+  targetRevision: HEAD
+  chartPath: charts/myapp
