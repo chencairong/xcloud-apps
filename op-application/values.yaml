@@ -1,0 +1,4 @@
+helm:
+  repoURL: "http://10.155.255.182/repos"
+  targetRevision: 0.1.2
+  chartName: op-gateway

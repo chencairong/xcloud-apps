@@ -5,7 +5,3 @@ image:
 service:
   type: ClusterIP
   port: 80
-
-helm:
-  repoURL: "http://10.155.255.182/repos"
-  targetRevision: 0.1.2
