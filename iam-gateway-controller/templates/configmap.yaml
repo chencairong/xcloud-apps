@@ -4,8 +4,8 @@ metadata:
   name: {{ .Release.Name }}-config
   labels:
     app: {{ .Release.Name }}
+  namespace: operator
 data:
-  image:
-    registry: "10.155.255.182:5000"
-    repository: /xcloud/iam-gateway
-    tag: {{- .Chart.Version -}}
+  registry: "10.155.255.182:5000"
+  repository: "/xcloud/iam-gateway"
+  tag: "{{ .Chart.Version }}"
