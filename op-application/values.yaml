@@ -8,3 +8,14 @@ appConf:
     white-list:
       - /iam-service/swagger-ui/**
       - /iam-service/openapi/**
+    allowlist:
+      - /favicon.ico
+      - /actuator/**
+      - /*/openapi/**
+  app.proxy:
+    services:
+      - type: NVO
+        name: traefik
+        uri: http://traefik:80
+        context-path: /nvo
+        predicate-path: /nvo/**
