@@ -1,0 +1,17 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/name: iam-gateway-controller
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  name: iam-gateway-controller-view
+  namespace: operator
+roleRef:
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+  name: view
+subjects:
+  - kind: ServiceAccount
+    name: iam-gateway-controller
+    namespace: operator

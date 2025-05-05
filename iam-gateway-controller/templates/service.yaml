@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/quarkus-version: 3.21.4
+    app.quarkus.io/commit-id: ba424ea340d567d70ce6ef1fba9c4718d1bc64fc
+    app.quarkus.io/vcs-uri: https://github.com/extremenetworks/xcloud-operator.git
+    app.quarkus.io/build-timestamp: 2025-05-05 - 10:24:38 +0000
+  labels:
+    app.kubernetes.io/name: iam-gateway-controller
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/managed-by: quarkus
+  name: iam-gateway-controller
+  namespace: operator
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: {{ .Values.app.ports.http }}
+  selector:
+    app.kubernetes.io/name: iam-gateway-controller
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  type: ClusterIP
