@@ -4,7 +4,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: iam-gateway-controller
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/version: 1.0.2
   name: iamgatewaycontroller-cluster-role
 rules:
   - apiGroups:
@@ -27,7 +27,7 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: iam-gateway-controller
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/version: 1.0.2
   name: josdk-crd-validating-cluster-role
 rules:
   - apiGroups:

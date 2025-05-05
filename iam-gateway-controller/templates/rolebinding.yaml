@@ -4,7 +4,7 @@ kind: RoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: iam-gateway-controller
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/version: 1.0.2
   name: iam-gateway-controller-view
   namespace: operator
 roleRef:

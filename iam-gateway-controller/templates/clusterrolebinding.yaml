@@ -4,7 +4,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: iam-gateway-controller
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/version: 1.0.2
   name: iamgatewaycontroller-crd-validating-role-binding
 roleRef:
   kind: ClusterRole
@@ -20,7 +20,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: iam-gateway-controller
-    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/version: 1.0.2
   name: iamgatewaycontroller-cluster-role-binding
 roleRef:
   kind: ClusterRole
