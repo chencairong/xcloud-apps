@@ -9,7 +9,9 @@ metadata:
 rules:
   - apiGroups:
       - devops.extremecloud.com
+      - argoproj.io
     resources:
+      - applications
       - iamgatewayconfigurations
       - iamgatewayconfigurations/status
       - iamgatewayconfigurations/finalizers
