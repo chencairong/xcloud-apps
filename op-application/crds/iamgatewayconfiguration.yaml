@@ -33,3 +33,7 @@ spec:
     storage: true
     subresources:
       status: {}
+    additionalPrinterColumns:
+      - name: App Conf
+        type: "string"
+        jsonPath: .spec.appConf
