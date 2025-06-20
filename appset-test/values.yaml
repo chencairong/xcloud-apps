@@ -1,0 +1,9 @@
+global:
+  namespace: portal
+  gdc_name: za1
+configRepoName: xcloud-appconfig
+configBranch: main
+configBase: xiq
+
+appVersion:
+  managed-database: 1.0.1

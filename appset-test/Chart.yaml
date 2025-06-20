@@ -1,0 +1,12 @@
+apiVersion: v2
+description: chart for appset
+name: appset-test
+version: 25.3.0-35
+annotations:
+  minimum_resource: CPU 16 cores, Memory 128Gi
+  app_name: xiq-portal
+  app_namespace: portal
+  app_project: xiq
+  app_mode: ""
+  datacenter: GDC
+  vault_path: /kv/data/xiq/

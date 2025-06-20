@@ -1,0 +1,105 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  generators:
+  - list:
+      elements:
+      - name: portal-managed-db
+        chartName: managed-database
+        version: {{ get .Values.appVersion "managed-database" }}
+        layer: middleware
+        kind: middleware
+        flag: enableRDS
+  template:
+    metadata:
+      name: {{`'{{name}}'`}}
+      labels:
+        layer: {{`'{{layer}}'`}}
+        appset: {{ .Release.Name }}
+    spec:
+      project: xiq
+      source:
+        repoURL: https://charts.xcloudiq.com/charts/xiq
+        chart: {{`'{{chartName}}'`}}
+        targetRevision: {{`'{{version}}'`}}
+        plugin:
+          name: argocd-vault-plugin-helm
+          env:
+            - name: CONFIG_REPO_URL
+              value: git@github.com:extremenetworks
+            - name: CONFIG_REPO_NAME
+              value: {{ .Values.configRepoName }}
+            - name: CONFIG_REPO_KEY
+              value: {{ .Values.configRepoName | upper | replace "-" "_" }}_KEY
+            - name: CONFIG_BRANCH
+              value: {{ .Values.configBranch }}
+            - name: CONFIG_BASE
+              value: xiq
+            - name: GLOBAL_VALUES
+              value: {{ default (printf "xiq/%s" .Values.global.gdc_name) .Values.configRoot }}/portal/global.yaml
+            - name: APP_VALUES
+              value: {{ default (printf "xiq/%s" .Values.global.gdc_name) .Values.configRoot }}/portal/{{`{{name}}`}}.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: {{ .Values.global.namespace }}
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+  syncPolicy:
+    applicationsSync: {{ .Values.syncPolicy }}
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - middleware
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - pre_sync
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - schema
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - post_schema
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - schemachange_before
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - schemachange
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - backend
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - schemachange_after
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - frontend
+        - matchExpressions:
+            - key: layer
+              operator: In
+              values:
+                - post_sync
