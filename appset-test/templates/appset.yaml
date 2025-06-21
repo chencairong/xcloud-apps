@@ -6,7 +6,7 @@ spec:
   generators:
   - list:
       elements:
-      - name: portal-managed-db
+      - name: portal-test-db
         chartName: managed-database
         version: {{ get .Values.appVersion "managed-database" }}
         layer: middleware
