@@ -12,6 +12,11 @@ spec:
         layer: middleware
         kind: middleware
         flag: enableRDS
+      - name: portaldb-init
+        chartName: portaldb-init
+        version: {{ default .Chart.Version (get .Values.appVersion "portaldb-init") }}
+        layer: schema
+        kind: job
   template:
     metadata:
       name: {{`'{{name}}'`}}
