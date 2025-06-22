@@ -6,12 +6,14 @@ spec:
   generators:
   - list:
       elements:
+      {{- if .Values.enableRDS }}
       - name: portal-test-db
         chartName: managed-database
         version: {{ get .Values.appVersion "managed-database" }}
         layer: middleware
         kind: middleware
         flag: enableRDS
+      {{- end }}
       - name: a3db-init
         chartName: a3db-init
         version: {{ default .Chart.Version (get .Values.appVersion "a3db-init") }}
