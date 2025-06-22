@@ -28,7 +28,7 @@ spec:
     spec:
       project: xiq
       source:
-        repoURL: https://charts.xcloudiq.com/charts/xiq
+        repoURL: http://10.155.255.182/repos
         chart: {{`'{{chartName}}'`}}
         targetRevision: {{`'{{version}}'`}}
         plugin:
