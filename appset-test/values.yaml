@@ -7,6 +7,9 @@ configBase: xiq
 
 enableRDS: false
 
+a3db-init:
+  enableRDS: true
+
 appVersion:
   managed-database: 1.0.4
   a3db-init: 25.5.0-47
