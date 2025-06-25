@@ -6,12 +6,19 @@ spec:
   generators:
   - list:
       elements:
-      - name: portal-managed-db
+      {{- if .Values.enableRDS }}
+      - name: portal-test-db
         chartName: managed-database
         version: {{ get .Values.appVersion "managed-database" }}
         layer: middleware
         kind: middleware
         flag: enableRDS
+      {{- end }}
+      - name: a3db-init
+        chartName: a3db-init
+        version: {{ default .Chart.Version (get .Values.appVersion "a3db-init") }}
+        layer: schema
+        kind: job
   template:
     metadata:
       name: {{`'{{name}}'`}}
@@ -21,7 +28,7 @@ spec:
     spec:
       project: xiq
       source:
-        repoURL: https://charts.xcloudiq.com/charts/xiq
+        repoURL: http://10.155.255.182/repos
         chart: {{`'{{chartName}}'`}}
         targetRevision: {{`'{{version}}'`}}
         plugin:
