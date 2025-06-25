@@ -7,4 +7,4 @@ configBase: xiq
 
 appVersion:
   managed-database: 1.0.2
-  a3db-init: 25.5.0-47
+  a3db-init: 3.5.0
