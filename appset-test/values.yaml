@@ -6,4 +6,4 @@ configBranch: main
 configBase: xiq
 
 appVersion:
-  managed-database: 1.0.1
+  managed-database: 1.0.2
